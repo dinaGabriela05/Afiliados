@@ -1,0 +1,343 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API's PlanMarket Disponibles",
+    "version": "1.0.0",
+    "description": "Bienvenidos a la documentación aquí encontrará información para el uso correcto de cada una de las API's.\n\n## Cabezeras\n\n\nCada llamada a la API debe incluir los siguientes encabezados:\n\n```http\nContent-Type: application/json\n```\n\n## HTTP códigos\n\n\nLas API's utiliza códigos HTTP comunes para manejar solicitudes y respuestas..\nLa siguiente tabla muestra códigos HTTP comunes:\n\n| Code | Description                                                            |\n|------|------------------------------------------------------------------------|\n| 200  | Solicitud correcta.                                                      |\n| 400  | Se proporcionaron datos válidos pero la solicitud falló.                       |\n| 401  | No se proporcionó una clave de API válida.                                            |\n| 404  | No se pudo encontrar el recurso de solicitud.                               |\n| 405  | El método no está implementado                                          |\n| 422  | A la carga útil le faltan parámetros obligatorios o se proporcionaron datos no válidos. |\n| 429  | Demasiados intentos.                                                     |\n| 500  | La solicitud falló debido a un error interno.                               |\n| 503  | La API está fuera de línea por mantenimiento."
+  },
+  "host": "localhost:3000",
+  "basePath": "/api/v1",
+  "schemes": ["http", "https"],
+  "produces": ["application/json"],
+  "definitions": {
+    "afiliado": {
+      "type": "object",
+      "properties": {
+        "razonSocial": {
+          "description": "Razon social información",
+          "type": "string",
+          "example": "Empresa XYZ"
+        },
+        "identificacion": {
+          "description": "Identificación información",
+          "type": "object",
+          "example": {
+            "tipoDocumento": "RUC",
+            "documento": "1003520648",
+            "fechaVencimiento": "2020-10-23"
+          }
+        },
+        "estado": {
+          "description": "Información de estado",
+          "type": "string",
+          "example": "AFILIADO"
+        },
+        "dirección": {
+          "description": "Direccion informacion",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "callePrincipal": {
+                "description": "Calle principal información",
+                "type": "string",
+                "example": "Av. Cristobal Colon"
+              }
+            }
+          },
+          "example": [
+            {
+              "callePrincipal": "Av. XXXXXX y Zzzzzz"
+            }
+          ]
+        },
+        "ciudad": {
+          "description": "Información de ciudad",
+          "type": "string",
+          "example": "QUITO"
+        },
+        "contacto": {
+          "description": "Contacto información",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "numContacto": {
+                "description": "Número de contacto",
+                "type": "string",
+                "example": "099999999"
+              }
+            }
+          },
+          "example": [
+            {
+              "numContacto": "0999999999"
+            }
+          ]
+        },
+        "terminosCondiciones": {
+          "description": "Aceptación de Terminos y condiciones",
+          "type": "boolean",
+          "example": true
+        },
+        "tipo": {
+          "description": "Tipo de organización",
+          "type": "string",
+          "example": "JURIDICO"
+        },
+        "notificadores": {
+          "description": "Notificadores información",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "nombre": {
+                "description": "Nombre al que le va a llegar la notificación",
+                "type": "string",
+                "example": "Pedro Piguave"
+              },
+              "email": {
+                "description": "Correo al que le va a llegar la notificación",
+                "type": "string",
+                "example": "a@a.com"
+              },
+              "notificacion": {
+                "description": "Ids de notificaciones a enviar",
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "example": "5f93af3704e65e46908f99b1"
+                }
+              }
+            }
+          },
+          "example": [
+            {
+              "nombre": "Axxxxxxxxx",
+              "email": "a@a.com",
+              "notificación": ["5f93af3704e65e46908f99b1"]
+            }
+          ]
+        },
+        "cuentas": {
+          "description": "Cuentas información",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "banco": {
+                "description": "Nombre del Banco",
+                "type": "string",
+                "example": "BANCO XYZ"
+              },
+              "numero": {
+                "description": "Número de la cuenta",
+                "type": "string",
+                "example": "12345678"
+              },
+              "moneda": {
+                "description": "Moneda de la cuentar",
+                "type": "string",
+                "example": "DOLAR"
+              },
+              "tipo": {
+                "description": "Tipo de cuenta",
+                "type": "string",
+                "example": "AHORROS"
+              }
+            }
+          },
+          "example": [
+            {
+              "banco": "BANCO XYZ",
+              "numero": "12345678",
+              "moneda": "DOLAR",
+              "tipo": "CORRIENTE"
+            }
+          ]
+        },
+        "usuarios": {
+          "description": "Usuarios información",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "nombre": {
+                "description": "Nombre de usuario",
+                "type": "string",
+                "example": "Pedro"
+              },
+              "apellido": {
+                "description": "Apellido de usuario",
+                "type": "string",
+                "example": "Piguave"
+              },
+              "identificacion": {
+                "description": "Identificacion del usuario",
+                "type": "string",
+                "example": "1234567890"
+              },
+              "email": {
+                "description": "Correo del usuario",
+                "type": "string",
+                "example": "a@a.com"
+              },
+              "estado": {
+                "description": "Estado del usuario",
+                "type": "string",
+                "example": "ACTIVO"
+              },
+              "telefono": {
+                "description": "Telefono del usuario",
+                "type": "string",
+                "example": "099999999"
+              },
+              "rol": {
+                "description": "Ids de roles de usuario",
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "example": "5f93af3704e65e46908f99b1"
+                }
+              }
+            }
+          },
+          "example": [
+            {
+              "nombre": "Pedro",
+              "apellido": "Piguave",
+              "identificacion": "123456789",
+              "email": "a@a.com",
+              "estado": "ACTIVO",
+              "telefono": "123456789",
+              "rol": ["5f93af3704e65e46908f99b1"]
+            }
+          ]
+        }
+      },
+      "required": [
+        "razonSocial",
+        "identificacion",
+        "estado",
+        "direccion",
+        "ciudad",
+        "contacto",
+        "terminosCondiciones",
+        "tipo",
+        "notificadores",
+        "cuentas",
+        "usuarios"
+      ]
+    },
+    "EntityExample": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Entity Example name",
+          "type": "string",
+          "example": "Example"
+        },
+        "additionalInfo": {
+          "description": "Entity Example metadata",
+          "type": "object"
+        },
+        "description": {
+          "description": "Entity Example metadata",
+          "type": "string",
+          "example": "Example description"
+        },
+        "public": {
+          "description": "If the entity example is public or not",
+          "type": "object",
+          "example": true
+        }
+      },
+      "required": ["name", "petType"]
+    }
+  },
+  "paths": {
+    "/afiliado": {
+      "patch": {
+        "tags": ["Afiliado"],
+        "summary": "Crear Afiliado",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "mensaje": {
+                  "description": "Mensaje de resultado",
+                  "type": "string",
+                  "example": "Afiliado guardado exitosamente"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/afiliado"
+            }
+          }
+        ]
+      },
+      "put": {
+        "tags": ["Entity Example"],
+        "summary": "Update Entity Example",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EntityExample"
+            }
+          }
+        ]
+      },
+      "get": {
+        "tags": ["Entity Example"],
+        "summary": "List Entity Examples",
+        "responses": {
+          "200": {
+            "description": "Tickets List",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/EntityExample"
+              }
+            }
+          },
+          "422": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+    "**/*.+(js|jsx|ts|tsx)": [
+      "eslint --max-warnings=0"
+    ],
+    "**/*.+(js|jsx|ts|tsx|json|css|scss|html)": [
+      "prettier --write",
+      "git add"
+    ]
+  }
